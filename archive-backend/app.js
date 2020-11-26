@@ -5,18 +5,20 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const api=require('./routes/api')
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//图片路径
-app.use('/uploads', express.static(__dirname + '/uploads'))
-
+//api
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/api/v1',api);
 
 //mongoDB
 //链接数据库
